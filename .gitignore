@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 虚拟环境
+venv/
+env/
+ENV/
+.venv/
+.env/
+virtualenv/
+
+# 配置文件
+.env.yaml
+!.env.example.yaml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.spyderproject
+.spyproject
+.ropeproject
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+Desktop.ini
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 日志
+*.log
+logs/
+log/
+
+# 项目特定文件
+.streamlit/secrets.toml
+
+# 临时文件和缓存
+.cache/
+temp/
+tmp/
+.coverage
+htmlcov/
+.pytest_cache/
