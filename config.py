@@ -1,4 +1,4 @@
-#!/usr/bin/env python  
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # author：筱可
 """
@@ -11,10 +11,10 @@ import yaml
 from datetime import datetime
 
 # 加载YAML格式的环境变量
-def load_yaml_env(file_path='.env.yaml'):
+def load_yaml_env(file_path=".env.yaml"):
     try:
         if os.path.exists(file_path):
-            with open(file_path, 'r', encoding='utf-8') as file:
+            with open(file_path, "r", encoding="utf-8") as file:
                 return yaml.safe_load(file)
         return {}
     except Exception as e:
@@ -28,7 +28,7 @@ env_config = load_yaml_env()
 def get_config_value(config, yaml_path, default=None):
     """
     从YAML配置中获取值
-    
+
     参数:
     - config: YAML配置字典
     - yaml_path: YAML中的路径，如 'siliconflow.api_key'
@@ -42,7 +42,7 @@ def get_config_value(config, yaml_path, default=None):
             value = value[key]
         else:
             return default
-    
+
     return value
 
 # 服务提供商配置
@@ -81,7 +81,7 @@ if DEFAULT_PROVIDER not in PROVIDERS:
 APP_CONFIG = {
     "AUTHOR": get_config_value(env_config, 'app.author', "筱可"),
     "CURRENT_DATE": datetime.now().strftime("%Y-%m-%d"),
-    "WECHAT_PLATFORM": get_config_value(env_config, 'app.wechat_platform', "DateWhale"),
+    "WECHAT_PLATFORM": get_config_value(env_config, 'app.wechat_platform', "筱可AI研习社"),
     "APP_TITLE": get_config_value(env_config, 'app.title', "爆款标题生成助手"),
     "APP_DESCRIPTION": get_config_value(env_config, 'app.description', "基于大模型的多角度爆款标题生成工具，从8个不同角度为您打造爆款标题方案"),
     "DEFAULT_MAX_TOKENS": int(get_config_value(env_config, 'app.default_max_tokens', 4096)),
@@ -93,22 +93,27 @@ def get_provider_config(provider_name=None):
     """获取指定服务提供商的配置"""
     if provider_name is None:
         provider_name = DEFAULT_PROVIDER
-    
+
     if provider_name not in PROVIDERS:
         raise ValueError(f"未知的服务提供商: {provider_name}")
-    
+
     return PROVIDERS[provider_name]
+
+# 获取当前提供商的模型列表
+def get_current_models(provider_name=None):
+    provider_config = get_provider_config(provider_name)
+    return provider_config.get("models", {})
 
 # 验证配置的完整性
 def validate_config():
     """验证配置是否完整有效"""
     warnings = []
-    
+
     # 检查每个提供商是否都有API密钥
     for provider, config in PROVIDERS.items():
         if not config["api_key"]:
             warnings.append(f"警告: {provider} 未配置API密钥")
-    
+
     if warnings:
         print("\n".join(warnings))
         return False

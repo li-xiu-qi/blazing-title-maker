@@ -27,33 +27,33 @@
 
 1. **克隆项目**
 
-```bash
-git clone https://github.com/li-xiu-qi/blazing-title-maker.git
-cd blazing-title-maker
-```
+  ```bash
+  git clone https://github.com/li-xiu-qi/blazing-title-maker.git
+  cd blazing-title-maker
+  ```
 
 2. **安装依赖**
 
-```bash
-pip install -r requirements.txt
-```
+  ```bash
+  pip install -r requirements.txt
+  ```
 
 3. **配置API密钥**
 
-复制示例配置文件并填入您的API密钥:
+  复制示例配置文件并填入您的API密钥:
 
-```bash
-cp .env.example.yaml .env.yaml
-# 编辑 .env.yaml 文件，填入您的API密钥
-```
+  ```bash
+  cp .env.example.yaml .env.yaml
+  # 编辑 .env.yaml 文件，填入您的API密钥
+  ```
 
 ## 🚀 使用方法
 
 1. **启动应用**
 
-```bash
-streamlit run main.py
-```
+  ```bash
+  streamlit run main.py
+  ```
 
 2. **使用界面**
 
@@ -78,7 +78,6 @@ volcano:
 
 # 默认提供商设置
 default_provider: 火山引擎
-
 ```
 
 ## 📁 项目结构
@@ -86,13 +85,21 @@ default_provider: 火山引擎
 ```
 blazing-title-maker/
 │
-├── main.py              # 主应用程序
-├── config.py            # 配置管理
-├── prompt.md            # 提示词模板
-├── requirements.txt     # 依赖清单
-├── .env.yaml(需自行创建) # 环境配置文件
-├── .env.example.yaml    # 示例配置文件
-└── README.md            # 项目说明文档
+├── main.py                # 主应用程序
+├── config.py              # 配置管理模块
+├── api_client.py          # API客户端模块
+├── utils.py               # 实用工具函数
+├── session_manager.py     # 会话状态管理
+├── prompt.py              # 提示词加载器
+├── prompt.md              # 中文提示词模板
+├── prompt_en.md           # 英文提示词模板
+├── document.md            # 技术文档
+├── article.md             # 项目说明文章
+├── requirements.txt       # 依赖清单
+├── README.md              # 项目说明文档
+├── .env.yaml              # 实际环境配置文件
+├── .env.example.yaml      # 示例配置文件
+└── .gitignore             # Git忽略配置
 ```
 
 ## 🧠 提示词设计
